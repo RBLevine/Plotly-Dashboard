@@ -11,7 +11,7 @@ var bubbleChart = d3.select("#bubble");
 // Create init screen
 function init() {
     // Read json file
-    d3.json("/data/samples.json").then(function(data) {
+    d3.json("data/samples.json").then(function(data) {
         
         // Get items for the drop down
         var dropDownItems = data.names;
@@ -41,16 +41,30 @@ function getStats(id) {
         console.log(demoInfo);
 
         // Add metadata demoInfo by key and value
-        Object.defineProperties(demoInfo).forEach(([key,value]) => {
+        Object.entries(demoInfo).forEach(([key,value]) => {
             demoTable.append("h5").text(`${key}: ${value}`);
         });
     });
 };
 
+// Create charts function
+function creatCharts(id) {
+     
+    // Read json file
+    d3.json("data/samples.json").then((data) => {
 
+        // Arrays for sample data
+        var otuIds = [];
+        var otuLabels = [];
+        var sampleVals = [];
+
+        // Filter samples
+        var sample = data.samples.filter()
+    });
+};
 
 // Changed selection function
-function selectionChanged(id) {
+function optionChanged(id) {
     getStats(id);
     createCharts(id);
 };
